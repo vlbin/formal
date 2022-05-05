@@ -8,12 +8,11 @@ interface FormFieldProps extends FormFieldType {
 
 const FormField = ({ name, component }: FormFieldProps) => {
   const { addFormField } = useForm();
-  const [_, setFormElement] = useState<HTMLInputElement>();
   const ref = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>;
+
   useUpdateEffect(() => {
     const inputChild = ref.current.getElementsByTagName("input")[0];
     inputChild.dataset.formal_name = name;
-    setFormElement(inputChild);
 
     addFormField(inputChild, name);
   }, [name]);
